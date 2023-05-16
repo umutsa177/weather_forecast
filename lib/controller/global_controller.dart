@@ -1,5 +1,3 @@
-// ignore_for_file: cast_from_null_always_fails
-
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:weather_forecast/model/weather_data.dart';
@@ -52,7 +50,7 @@ class GlobalController extends GetxController {
     }
 
     // getting the current position
-    return (await Geolocator.getCurrentPosition(
+    return await Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.high)
         .then((value) {
       // update out lattitude and longitude
@@ -66,6 +64,6 @@ class GlobalController extends GetxController {
         weatherData.value = value;
         _isLoading.value = false;
       });
-    })) as Map<String, dynamic>;
+    });
   }
 }
